@@ -1,0 +1,5 @@
+int = %d   (nº sem virgula)
+float = %f  (nº com virgula)
+double = %lf (nº c/ grandes)
+char = %c    (um caracter)
+string %s (uma palavra)
