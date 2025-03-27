@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main(){
+    char CPF[14];
+    float renda;
+    printf("Digite o CPF do cidade: \n");
+    scanf("%s",&CPF);
+    printf("Digite a renda do cidadão: \n");
+    scanf("%f",&renda);
+    if(renda >=4664.68)
+        printf("\nO cidadão com renda %.2f possui alíquota 27,5%%",renda);
+    else if(renda>=3751.06 && renda<4664.68)
+        printf("\nO cidadão com renda %.2f possui alíquota 22,5%%",renda);
+    else if(renda>=2826.66 && renda<3751.06)
+        printf("\nO cidadão com renda %.2f possuti alíquota 15%%",renda);
+    else if(renda>=2259.21 && renda<3751.06)
+        printf("\nO cidadão com renda %.2f possui alíquota 7,5%%",renda);
+    else
+        printf("\nO cidadão com renda %.2f é insento do IR\n",renda);
+}
