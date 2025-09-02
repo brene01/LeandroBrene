@@ -1,0 +1,5 @@
+cria uma adaptação do codigo para receber um numero e transformar ele em binario. 
+sugestao 1: n utilize for, utilize while. 
+sugestao 2: o numero para de ser empilhado quando o cosciente é zero. 
+sugestao 3: o  que precisa ser empilhado é o resto da divisão
+sugestao 4: não existe alteração nenhuma nas funções de empilhar e desempilhar, o tratamento desse codigo diferente é na main.
