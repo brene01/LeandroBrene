@@ -1,50 +1,66 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-typedef struct dupla{
+typedef struct dupla {
     int dado;
     struct dupla *elink, *dlink;
-    
-}no;
+} no;
 
-no*crialde(int n){
-    no*ini,*p,*aux;
-    int valor;
-    ini=NULL;
-    for(int i=1;i<=n;i++){
-        printf("\nDigite o valor %d da lista",i);
-        scanf("%d",&valor);
-        p=(no*)malloc(sizeof(no));
-        p->dado=valor;
-        p->elink=NULL;
-        if(ini!=NULL)
-            ini->elink=p;
-        p->dlink=ini;
-        ini=p;
-    }
-    return ini;
+no* push(no *topo, int valor){
+    no *p = (no*) malloc(sizeof(no));
+    p->dado = valor;
+    p->elink = topo;
+    p->dlink = NULL;
+    if (topo != NULL)
+        topo->dlink = p;
+    return p;
 }
-void escrevelista(no *p){
-    while (p!=NULL){
-        printf("%d\t", p-> dado);
-        p=p->dlink;
+
+no* pop(no *topo, int *valor){
+    if(topo == NULL){
+        printf("\nPilha vazia");
+        return NULL;
     }
+    no *temp = topo;
+    *valor = topo->dado;
+    topo = topo->elink;
+    if(topo != NULL)
+        topo->dlink = NULL;
+    free(temp);
+    return topo;
 }
+
+void imprimipilha(no *topo){
+    no *p = topo;
+    printf("\nPilha (topo -> base): ");
+    while(p != NULL){
+        printf("%d ", p->dado);
+        p = p->elink;
+    }
+    printf("\n");
+}
+
 int main(){
-    no*primeira;
-    int n;
-    printf("Criando uma lista encadeada");
-    do{
-        printf("\nEntre com o numero de nois:");
-        scanf("%d",&n);
-        }while(n<0);
-    primeira = crialde(n);
-    if(primeira !=NULL){
-        printf("\nLista Criada");
-        printf("\n");
-        escrevelista(primeira);
+    no *topo = NULL;
+    int n, valor;
+
+    printf("Criando uma pilha.\n");
+    printf("\nQuantos valores deseja empilhar? ");
+    scanf("%d", &n);
+
+    for(int i = 1; i <= n; i++){
+        printf("Digite o valor %d: ", i);
+        scanf("%d", &valor);
+        topo = push(topo, valor);
     }
-    else
-        printf("\nLista Vazia");
-   return 0;    
+
+    imprimipilha(topo);
+
+    printf("\nDesempilhando tudo:\n");
+    while(topo != NULL){
+        topo = pop(topo, &valor);
+        printf("Desempilhado: %d\n", valor);
+    }
+
+    return 0;
 }
